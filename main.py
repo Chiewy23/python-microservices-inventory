@@ -1,14 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from redis_om import get_redis_connection, HashModel
+from config import ConsumerConfig
 
 # RUN: uvicorn main:app --reload
-# 1:20:33
 
 # TO-DO
 # Refactor inventory-frontend to remove reliance on state.
 # Read DB connections from config file.
-# Create payment-frontend app.
 
 app = FastAPI()
 app.add_middleware(
@@ -18,11 +17,10 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-# Read these from config file eventually.
 redis = get_redis_connection(
-    host="redis-14148.c300.eu-central-1-1.ec2.cloud.redislabs.com",
-    port="14148",
-    password="6sIkabUNkuRt9lwqzCLX0Uidfx7vlW4R",
+    host=ConsumerConfig.HOST,
+    port=ConsumerConfig.PORT,
+    password=ConsumerConfig.PASSWORD,
     decode_responses=True
 )
 
