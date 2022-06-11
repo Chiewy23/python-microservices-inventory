@@ -7,7 +7,6 @@ from config import ConsumerConfig
 
 # TO-DO
 # Refactor inventory-frontend to remove reliance on state.
-# Read DB connections from config file.
 
 app = FastAPI()
 app.add_middleware(
